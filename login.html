@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Login Form</title>
+    <style>
+        form {
+            display: block;
+        }
+        body {
+            text-align: center;
+            margin-top: 150px;
+            background-color: whitesmoke;
+            background-color:rgb(185, 208, 200);
+        }
+        fieldset {
+            background-color: rgba(240, 128, 128, 0.459);
+            text-align: center;
+            max-width: 400px;
+            border-radius: 10px;
+            display: block;
+        }
+        input {
+            border-radius: 7px;
+            font-size: larger;
+        }
+        h1 {
+            text-align: center;
+            color: rgb(145, 80, 158);
+        }
+        #b1 {
+            background-color: rgb(145, 80, 158);
+        }
+    </style>
+</head>
+<body>
+    <form action="login.php" method="post">
+        <center><fieldset><br><br>
+        <h1><b>Login</b></h1><br>
+            <label for="userName"></label>
+            <input type="text" id="userName" name="name" placeholder="Username" required><br><br>
+            <label for="pswd"></label>
+            <input type="password" id="pswd" name="pspd" placeholder="Password" required><br><br><br>
+        <button type="button" id="b1" name="submit" style="border-radius: 30px; text-align: center;" class="btn btn-primary btn-md" onclick="validateLogin()">Login</button><br><br><br>
+        </fieldset></center><br><br>
+    </form>
+    <p id="validationMessage"></p>
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("userName").value;
+            var password = document.getElementById("pswd").value;
+
+            // Regular expressions for username and password validation
+            var usernamePattern = /^[A-Za-z0-9_]+$/;
+            var passwordPattern = /^(?=.*[A-Z]).{8,}$/;
+
+            var validationMessage = document.getElementById("validationMessage");
+
+            if (!usernamePattern.test(username)) {
+                validationMessage.textContent = "Username is invalid. It should not contain underscores and special symbols.";
+                return false;
+            }
+
+            if (!passwordPattern.test(password)) {
+                validationMessage.textContent = "Password is invalid. It should meet the criteria.";
+                return false;
+            }
+
+            // If both username and password are valid, you can redirect to the next page
+            window.location.href = "bookstypes.html";
+        }
+    </script>
+</body>
+</html>

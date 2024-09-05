@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color:rgb(222, 203, 177)
+        }
+
+        form {
+            display: block;
+        }
+
+        fieldset {
+            text-align: center;
+            max-width: 300px;
+            border-radius: 10px;
+            display: block;
+            background-color: rgba(96, 119, 161, 0.342);
+            margin-top: 100px;
+        }
+
+        input {
+            border-radius: 7px;
+            font-size: larger;
+        }
+
+        h1 {
+            text-align: center;
+            color: crimson;
+        }
+
+        #b1 {
+            border: none;
+            color: blue;
+        }
+
+        #b2 {
+            background-color: salmon;
+            width: 90px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <form action="SignInphp.php" method="post">
+        <center>
+            <fieldset>
+                <h1><b>Register</b></h1><br>
+                <label for="name"></label>
+                <input type="text" id="name" name="name" placeholder="Name" required><br><br>
+                <label for="em"></label>
+                <input type="email" id="em" name="email" placeholder="Email" required><br><br>
+                <label for="pspd"></label>
+                <input type="password" id="pswd" name="pspd" placeholder="Password" required><br><br>
+                <label for="confirmpswd"></label>
+                <input type="password" id="confirmpswd" name="conpspd" placeholder="Confirm password" required><br><br><br>
+            </fieldset>
+        </center><br><br>
+        <button type="button" id="b2" name="submit" style="border-radius: 30px; text-align: center;" onclick="validateForm()">Sign Up</button><br>
+        <p>Have an Account? 
+            <a href="#"><button id="b1" onclick="window.location.href='login.html';">Login here</button></a>
+        </p>
+    </form>
+    <p id="validationMessage"></p>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("pswd").value;
+            var confirmPassword = document.getElementById("confirmpswd").value;
+            var email = document.getElementById("em").value;
+            var namePattern = /^[A-Za-z0-9_]+$/;
+            var passwordPattern =/^(?=.*[A-Z]).{8,}$/;
+
+            var emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+
+            var validationMessage = document.getElementById("validationMessage");
+
+            if (!namePattern.test(name)) {
+                validationMessage.textContent = "Name is invalid.";
+                return false;
+            }
+
+            if (!passwordPattern.test(password)) {
+                validationMessage.textContent = "Password is invalid.";
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                validationMessage.textContent = "Passwords do not match.";
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                validationMessage.textContent = "Email is invalid.";
+                return false;
+            }
+
+            window.location.href = "bookstypes.html";
+        }
+    </script>
+</body>
+</html>
